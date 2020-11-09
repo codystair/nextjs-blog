@@ -21,8 +21,8 @@ jobs:
         run: npm install
       - name: Clean out directory
         run: rm -rf out
-      - name: Change basePath
-        run: sed -i 's/\( *basePath:\).*/\1 "\/${{ github.head_ref }}\/${{ github.sha }}",/' next.config.js
+      # - name: Change basePath
+      #   run: sed -i 's/\( *basePath:\).*/\1 "\/${{ github.head_ref }}\/${{ github.sha }}",/' next.config.js
       - name: Change assetPrefix
         run: sed -i 's/\( *assetPrefix:\).*/\1 "https:\/\/d2pvwkkcl13ibd.cloudfront.net\/${{ github.head_ref }}\/${{ github.sha }}",/' next.config.js
       - name: Build Site
