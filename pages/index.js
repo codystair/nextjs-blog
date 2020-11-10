@@ -107,7 +107,7 @@ export default function Home() {
         }
 
         .title a {
-          color: green;
+          color: orange;
           text-decoration: none;
         }
 
