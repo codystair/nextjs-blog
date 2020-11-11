@@ -7,7 +7,7 @@ jobs:
   create_or_update_pr_env:
     runs-on: ubuntu-latest
     env:
-      AWS_S3_BUCKET: w11d2-2-s3bucket-lm5cz9tardj2.s3-website
+      AWS_S3_BUCKET: w11d2-2-s3bucket-lm5cz9tardj2
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: "us-east-1"
