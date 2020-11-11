@@ -7,7 +7,7 @@ jobs:
   create_or_update_pr_env:
     runs-on: ubuntu-latest
     env:
-      AWS_S3_BUCKET: mondaytake3-s3bucket-ro2vt4a6uibz
+      AWS_S3_BUCKET: w11d2-2-s3bucket-lm5cz9tardj2.s3-website
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: "us-east-1"
@@ -35,5 +35,5 @@ jobs:
       - uses: actions/checkout@v2
       - uses: mb2dev/github-action-comment-pull-request@1.0.0
         with:
-          message: Check out the preview here https://d2pvwkkcl13ibd.cloudfront.net/${{ github.head_ref }}/${{ github.sha }}
+          message: Check out the preview here https://d3riq6f33scj81.cloudfront.net/${{ github.head_ref }}/${{ github.sha }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
