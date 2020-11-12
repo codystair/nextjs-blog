@@ -23,8 +23,8 @@ jobs:
         run: rm -rf out
       - name: Set Path Variable
         run: PATH_PREFIX=https://d1iyl7lab1awxd.cloudfront.net/${{ github.head_ref }}/${{ github.sha }}
-      # - name: Change basePath
-      #   run: sed -i 's/\( *basePath:\).*/\1 "\/${{ github.head_ref }}\/${{ github.sha }}",/' next.config.js
+      - name: Change basePath
+        run: sed -i 's/\( *assetPrefix:\).*/\1 "https:\/\/d1iyl7lab1awxd.cloudfront.net\/${{ github.head_ref }}\/${{ github.sha }}",/' next.config.js
       - name: Build Site
         run: npm run-script build
       - uses: jakejarvis/s3-sync-action@master
