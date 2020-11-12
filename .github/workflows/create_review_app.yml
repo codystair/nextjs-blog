@@ -7,12 +7,12 @@ jobs:
   create_or_update_pr_env:
     runs-on: ubuntu-latest
     env:
-      AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+      AWS_S3_BUCKET: pathmethod
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: "us-east-1"
       BRANCH_NAME: ${{ github.head_ref }}
-      SOURCE_DIR: "out"
+      SOURCE_DIR: "public"
       DEST_DIR: ${{ github.head_ref }}/${{ github.sha }}
     steps:
       - name: Checkout
@@ -21,8 +21,10 @@ jobs:
         run: npm install
       - name: Clean out directory
         run: rm -rf out
+      - name: Set Path Variable
+        run: PATH_PREFIX=https://d1iyl7lab1awxd.cloudfront.net/${{ github.head_ref }}/${{ github.sha }}
       - name: Change basePath
-        run: sed -i 's/\( *basePath:\).*/\1 "\/${{ github.head_ref }}\/${{ github.sha }}",/' next.config.js
+        run: sed -i 's/\( *assetPrefix:\).*/\1 "https:\/\/d1iyl7lab1awxd.cloudfront.net\/${{ github.head_ref }}\/${{ github.sha }}",/' next.config.js
       - name: Build Site
         run: npm run-script build
       - uses: jakejarvis/s3-sync-action@master
@@ -35,5 +37,5 @@ jobs:
       - uses: actions/checkout@v2
       - uses: mb2dev/github-action-comment-pull-request@1.0.0
         with:
-          message: Check out the preview here https://dfj3yspw6qfmt.cloudfront.net/${{ github.head_ref }}/${{ github.sha }}
+          message: Check out the preview here https://d1iyl7lab1awxd.cloudfront.net/${{ github.head_ref }}/${{ github.sha }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
